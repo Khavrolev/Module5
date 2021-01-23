@@ -12,23 +12,30 @@ class MainClass
             result[i] = int.Parse(Console.ReadLine());
         }
 
-        int temp;
-
-        for (int i = 0; i < result.Length; i++)
-        {
-            for (int j = i + 1; j < result.Length; j++)
-            {
-                if (result[i] > result[j])
-                {
-                    temp = result[i];
-                    result[i] = result[j];
-                    result[j] = temp;
-                }
-            }
-            Console.WriteLine(result[i]);
-        }
+        result = SortArray(result);
 
         return result;
+    }
+
+    static int[] SortArray(int[] arr)
+    {
+        int temp;
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            for (int j = i + 1; j < arr.Length; j++)
+            {
+                if (arr[i] > arr[j])
+                {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            Console.WriteLine(arr[i]);
+        }
+
+        return arr;
     }
 
     public static void Main(string[] args)
