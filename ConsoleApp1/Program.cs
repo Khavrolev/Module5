@@ -15,37 +15,53 @@ class MainClass
         return result;
     }
 
-    static int[] SortArray(int[] arr)
+    static void SortArray(in int[] arr, out int[] sorteddesc, out int[] sortedasc)
     {
-        int temp;
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            for (int j = i + 1; j < arr.Length; j++)
-            {
-                if (arr[i] > arr[j])
-                {
-                    temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-            }
- //           Console.WriteLine(arr[i]);
-        }
-
-        return arr;
+        sorteddesc = SortArrayDesc(arr);
+        sortedasc = SortArrayAsc(arr);
     }
 
-    static void ShowArray(int[] arr, bool flag = false)
+    static int[] SortArrayDesc(int[] newArr)
     {
-        int[] result = arr;
-
-        if (flag)
+        int temp;
+        for (int i = 0; i < newArr.Length; i++)
         {
-            result = SortArray(arr);
+            for (int j = i + 1; j < newArr.Length; j++)
+            {
+                if (newArr[i] < newArr[j])
+                {
+                    temp = newArr[i];
+                    newArr[i] = newArr[j];
+                    newArr[j] = temp;
+                }
+            }
         }
 
-        foreach(int item in result)
+        return newArr;
+    }
+
+    static int[] SortArrayAsc(int[] newArr)
+    {
+        int temp;
+        for (int i = 0; i < newArr.Length; i++)
+        {
+            for (int j = i + 1; j < newArr.Length; j++)
+            {
+                if (newArr[i] > newArr[j])
+                {
+                    temp = newArr[i];
+                    newArr[i] = newArr[j];
+                    newArr[j] = temp;
+                }
+            }
+        }
+
+        return newArr;
+    }
+
+    static void ShowArray(int[] arr)
+    {
+        foreach(int item in arr)
         {
             Console.WriteLine(item);
         }
@@ -53,9 +69,17 @@ class MainClass
 
     public static void Main(string[] args)
     {
-        int[] array = GetArrayFromConsole(10);
- //       int[] sortarray = SortArray(array);
-        ShowArray(array, true);
+        int[] array = GetArrayFromConsole(5);
+        int[] sorteddesc;
+        int[] sortedasc;
+
+        SortArray(array, out sorteddesc, out sortedasc);
+
+        Console.WriteLine("Первая сортировка: ");
+        ShowArray(sorteddesc);
+
+        Console.WriteLine("Вторая сортировка: ");
+        ShowArray(sortedasc);
 
         Console.ReadKey();
     }
