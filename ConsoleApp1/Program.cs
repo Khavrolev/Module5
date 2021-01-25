@@ -5,24 +5,25 @@ class MainClass
     static void Main(string[] args)
     {
         Console.Write("Напишите число: ");
-        decimal num = decimal.Parse(Console.ReadLine());
+        int num = int.Parse(Console.ReadLine());
 
-        decimal fac = Factorial(num);
+        Console.Write("Напишите степень: ");
+        byte power = byte.Parse(Console.ReadLine());
 
-        Console.Write("Факториал числа: {0}", fac);
+        int result = PowerUp(num, power);
+
+        Console.Write("Число {0} в степени {1} = {2}", num, power, result);
 
         Console.ReadKey();
     }
 
-    static decimal Factorial(decimal x)
+    private static int PowerUp(int N, byte pow)
     {
-        if (x == 0)
-        {
+        if (pow == 0)
             return 1;
-        }
+        else if (pow == 1)
+            return N;
         else
-        {
-            return x * Factorial(x - 1);
-        }
+            return N * PowerUp(N, pow--); 
     }
 }
