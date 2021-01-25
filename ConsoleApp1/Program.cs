@@ -21,9 +21,11 @@ class MainClass
         sortedasc = SortArrayAsc(arr);
     }
 
-    static int[] SortArrayDesc(int[] newArr)
+    static int[] SortArrayDesc(int[] arr)
     {
         int temp;
+        int[] newArr = new int[arr.Length];
+        Array.Copy(arr, newArr, arr.Length);
         for (int i = 0; i < newArr.Length; i++)
         {
             for (int j = i + 1; j < newArr.Length; j++)
@@ -40,9 +42,11 @@ class MainClass
         return newArr;
     }
 
-    static int[] SortArrayAsc(int[] newArr)
+    static int[] SortArrayAsc(int[] arr)
     {
         int temp;
+        int[] newArr = new int[arr.Length];
+        Array.Copy(arr, newArr, arr.Length);
         for (int i = 0; i < newArr.Length; i++)
         {
             for (int j = i + 1; j < newArr.Length; j++)
