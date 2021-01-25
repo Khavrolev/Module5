@@ -2,89 +2,33 @@
 
 class MainClass
 {
-    static int[] GetArrayFromConsole(int num = 5)
+    static void Main(string[] args)
     {
-        var result = new int[num];
+        Console.WriteLine("Напишите что-то");
+        var str = Console.ReadLine();
 
-        for (int i = 0; i < result.Length; i++)
-        {
-            Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-            result[i] = int.Parse(Console.ReadLine());
-        }
+        Console.WriteLine("Укажите глубину эха");
+        var deep = int.Parse(Console.ReadLine());
 
-        return result;
-    }
-
-    static void SortArray(in int[] arr, out int[] sorteddesc, out int[] sortedasc)
-    {
-        sorteddesc = SortArrayDesc(arr);
-        sortedasc = SortArrayAsc(arr);
-    }
-
-    static int[] SortArrayDesc(int[] arr)
-    {
-        int temp;
-        int[] newArr = new int[arr.Length];
-        Array.Copy(arr, newArr, arr.Length);
-        for (int i = 0; i < newArr.Length; i++)
-        {
-            for (int j = i + 1; j < newArr.Length; j++)
-            {
-                if (newArr[i] < newArr[j])
-                {
-                    temp = newArr[i];
-                    newArr[i] = newArr[j];
-                    newArr[j] = temp;
-                }
-            }
-        }
-
-        return newArr;
-    }
-
-    static int[] SortArrayAsc(int[] arr)
-    {
-        int temp;
-        int[] newArr = new int[arr.Length];
-        Array.Copy(arr, newArr, arr.Length);
-        for (int i = 0; i < newArr.Length; i++)
-        {
-            for (int j = i + 1; j < newArr.Length; j++)
-            {
-                if (newArr[i] > newArr[j])
-                {
-                    temp = newArr[i];
-                    newArr[i] = newArr[j];
-                    newArr[j] = temp;
-                }
-            }
-        }
-
-        return newArr;
-    }
-
-    static void ShowArray(int[] arr)
-    {
-        foreach(int item in arr)
-        {
-            Console.WriteLine(item);
-        }
-    }
-
-    public static void Main(string[] args)
-    {
-        int[] array = GetArrayFromConsole(5);
-        int[] sorteddesc;
-        int[] sortedasc;
-
-        SortArray(array, out sorteddesc, out sortedasc);
-
-        Console.WriteLine("Первая сортировка: ");
-        ShowArray(sorteddesc);
-
-        Console.WriteLine("Вторая сортировка: ");
-        ShowArray(sortedasc);
+        Echo(str, deep);
 
         Console.ReadKey();
+    }
+
+    static void Echo(string saidworld, int deep)
+    {
+        var modif = saidworld;
+
+        if (modif.Length > 2)
+        {
+            modif = modif.Remove(0, 2);
+        }
+
+        Console.WriteLine("..." + modif);
+
+        if (deep > 1)
+        {
+            Echo(modif, deep - 1);
+        }
     }
 }
